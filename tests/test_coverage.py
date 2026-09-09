@@ -42,7 +42,7 @@ class CoverageCorollaryTests(unittest.TestCase):
         # Every stored query is preserved, but an unseen event-space direction
         # changes maximally.
         self.assertTrue(np.allclose(H @ Z, 0.0))
-        self.assertAlmostEqual(float(H @ (Q @ unseen)), 1.0)
+        self.assertAlmostEqual((H @ (Q @ unseen)).item(), 1.0)
 
     def test_full_rank_can_still_be_badly_conditioned(self):
         eps = 1e-8
