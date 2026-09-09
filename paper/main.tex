@@ -1,0 +1,92 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,hyperref,microtype}
+\newtheorem{theorem}{Theorem}
+\title{Finite-Rank Event Resolvents in Time-Ordered Linear Propagators}
+\author{Antti Luode}
+\date{Draft --- priority unresolved}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give an exact reduction for a time-ordered product of linear maps in which a finite collection of factors receive finite-rank edits. The change of the ambient propagator factors through an event space whose dimension is the sum of the edit ranks. A strictly block-lower-triangular transfer matrix records how earlier edits propagate into directions sensed by later edits, yielding a finite nilpotent resolvent. Projection through external input and readout maps gives an observer-dependent polynomial in event strength whose highest nonzero order defines an algebraic interaction horizon. The identity follows by multilinear expansion. Historical priority relative to path-sum, impulsive-system, and finite-rank perturbation literature remains unresolved.
+\end{abstract}
+
+\section{Setup}
+Let $A_0,\ldots,A_{T-1}\in\mathbb C^{n\times n}$ and
+\[
+\Phi(b,a)=A_{b-1}\cdots A_a,\qquad \Phi(a,a)=I.
+\]
+At $0\le\tau_1<\cdots<\tau_m\le T-1$, replace
+\[
+A_{\tau_i}\mapsto A_{\tau_i}+U_iM_iV_i^*.
+\]
+Set
+\[
+L_i=\Phi(T,\tau_i+1),\quad R_i=\Phi(\tau_i,0),
+\quad \Omega_{ji}=V_j^*\Phi(\tau_j,\tau_i+1)U_i\;(j>i),
+\]
+with $\Omega_{ji}=0$ otherwise, and
+\[
+P=[L_1U_1\ \cdots\ L_mU_m],\quad
+Q=\begin{bmatrix}V_1^*R_1\\ \vdots\\V_m^*R_m\end{bmatrix},
+\quad M=\operatorname{diag}(M_1,\ldots,M_m).
+\]
+
+\section{Finite-event resolvent}
+\begin{theorem}
+If $\widetilde\Phi(T,0)$ is the modified propagator, then
+\[
+\boxed{\widetilde\Phi(T,0)-\Phi(T,0)=PM(I-\Omega M)^{-1}Q.}
+\]
+Moreover $(\Omega M)^m=0$.
+\end{theorem}
+\begin{proof}
+Expand the modified product multilinearly. A term indexed by an ordered subset
+$i_1<\cdots<i_k$ equals
+\[
+L_{i_k}U_{i_k}M_{i_k}
+\Omega_{i_ki_{k-1}}M_{i_{k-1}}\cdots
+\Omega_{i_2i_1}M_{i_1}V_{i_1}^*R_{i_1}.
+\]
+Summing all $k$-event terms gives $PM(\Omega M)^{k-1}Q$. Summing $k=1,\ldots,m$ and using strict block-lower-triangular nilpotence proves the identity.
+\end{proof}
+
+Consequently,
+\[
+\operatorname{rank}(\widetilde\Phi-\Phi)\le\sum_i r_i.
+\]
+
+\section{Directed finite-strength interference}
+For two events $i<j$ the exact cross term is
+\[
+\mathcal I_{j\leftarrow i}
+=
+L_jU_jM_j
+\underbrace{V_j^*\Phi(\tau_j,\tau_i+1)U_i}_{\Omega_{ji}}
+M_iV_i^*R_i.
+\]
+Thus $\Omega_{ji}=0$ implies exact finite-strength additivity. We provisionally call this \emph{causal orthogonality}.
+
+\section{Observer-projected interaction}
+For input map $B$ and readout $C$,
+\[
+C(\widetilde\Phi-\Phi)B=(CP)M(I-\Omega M)^{-1}(QB).
+\]
+If $M_i\mapsto zM_i$, then
+\[
+\Delta Y(z)=\sum_{k=1}^m z^k\,CPM(\Omega M)^{k-1}QB.
+\]
+Define
+\[
+d_{B,C}=\max\{k:CPM(\Omega M)^{k-1}QB\neq0\}.
+\]
+This is an exact observer-dependent algebraic interaction horizon.
+
+\section{Priority boundary}
+The construction is close to Dyson/Peano--Baker expansions, path-sum methods, impulsive linear systems, observability theory, and finite-rank matrix identities. We therefore do not claim historical novelty. The open prior-art question is whether this exact event-space packaging and observer-horizon corollary have appeared in equivalent form.
+
+\begin{thebibliography}{9}
+\bibitem{giscard2013} P.-L. Giscard, S. J. Thwaite, D. Jaksch, \emph{Evaluating Matrix Functions by Resummations on Graphs: The Method of Path-Sums}, SIAM J. Matrix Anal. Appl. (2013), arXiv:1112.1588.
+\bibitem{giscard2015} P.-L. Giscard et al., \emph{An Exact Formulation of the Time-Ordered Exponential using Path-Sums}, J. Math. Phys. 56, 053503 (2015), arXiv:1410.6637.
+\end{thebibliography}
+\end{document}
