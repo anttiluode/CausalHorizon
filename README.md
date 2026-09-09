@@ -79,6 +79,29 @@ This separates:
 - `(I-Omega M)^-1`: how event edits interact internally,
 - `CP`: how consequences reach the observer.
 
+### Observer-bank coverage
+
+For a linear family of admissible query directions `U`, define the reachable
+event-entry space
+\[
+\mathcal E=Q\mathcal U.
+\]
+If remembered queries `b_1,...,b_s` satisfy
+\[
+\operatorname{span}\{Qb_1,\ldots,Qb_s\}=\mathcal E,
+\]
+then exact preservation on that bank implies exact preservation for **every**
+query in `U` under the same event update and readout.
+
+So a bounded bank earns the right to represent a capability by spanning its
+**projected event-entry space**, not by merely containing many examples or the
+currently most vulnerable examples. The exact coverage dimension is
+\[
+\dim(Q\mathcal U).
+\]
+Full rank is not enough under noise: conditioning controls how bank tolerances
+amplify to unseen queries. See [`COVERAGE.md`](COVERAGE.md).
+
 ### Algebraic interaction horizon
 Scale all event matrices by \(z\):
 \[
@@ -103,18 +126,22 @@ The theorem was motivated by `AnttisBrain2`, `SighImageSuper`, `GeometricNeuronV
 
 Those repos are motivation only. The theorem here is a standalone finite-dimensional linear algebra statement.
 
-The strongest immediate empirical handoff is to `Kompressori`: replace static patch-overlap metrics with the directed propagated overlap
+The strongest immediate empirical handoff to `Kompressori` is to replace static patch-overlap metrics with the directed propagated overlap
 \[
 \boxed{\Omega_{ji}=V_j^*\Phi_{j\leftarrow i}U_i}
 \]
 and test whether it predicts finite non-additivity better than physical distance or static subspace overlap.
 
+The strongest handoff to `IttnasNoruen` is different: current-interference replay asks which stored cues this proposal hurts most, whereas the coverage corollary asks which measured cue signatures span the future-response directions the capability can use. Gate 9's null result therefore does not contradict the theorem; it motivates a different selector.
+
 ## Files
 
 - `THEOREM.md` — statement, proof, and corollaries
+- `COVERAGE.md` — exact observer-bank sufficiency and conditioning
 - `PRIOR_ART.md` — novelty fence and closest known neighborhoods
 - `verify.py` — random dense numerical verification
-- `tests/test_identity.py` — unit tests
+- `tests/test_identity.py` — event-resolvent tests
+- `tests/test_coverage.py` — coverage / missing-direction / conditioning tests
 - `paper/main.tex` — short paper draft
 
 ## Verification
@@ -138,10 +165,12 @@ Established here:
 - exact pair-interaction term,
 - observer projection,
 - algebraic interaction horizon,
+- exact bank-sufficiency corollary in the linear event-space setting,
 - numerical verification.
 
 Not established:
 - historical priority,
 - general nonlinear applicability,
 - a brain or fluid mechanism,
-- that Kompressori's nonlinear field must obey this factorization.
+- that Kompressori's nonlinear field must obey this factorization,
+- that IttnasNoruen's tanh classifier exposes the exact hidden `Q` required by the coverage theorem.
